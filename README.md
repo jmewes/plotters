@@ -15,7 +15,7 @@ To be able to use the scripts, you need to have the following tools installed:
 
 - **Bash**: The scripts are simple bash scripts.
 - **Docker**: Docker is used to use the diagramming tool without installing them directly.
-- **entr**: (Optional) If you have `entr` installed, you can use the `-w` option of the scripts which will automatically re-render the diagrams after the source file has been changed.
+- **[entr](https://github.com/experimental-software/plotters/wiki/entr)**: (Optional) If you have `entr` installed, you can use the `-w` option of the scripts which will automatically re-render the diagrams after the source file has been changed.
 
 ## Setup
 
