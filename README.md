@@ -1,6 +1,6 @@
 # Plotters
 
-This repository contains a collection of scripts which can plot diagrams into images.
+This repository contains a collection of Docker-based Bash scripts which can plot diagram source files into binary images.
 
 The following diagramming tools are supported:
 
@@ -19,7 +19,7 @@ To be able to use the scripts, you need to have the following tools installed:
 
 ## Setup
 
-For the setup it is recommended to clone this repository and then add it's `/bin` directory into your `PATH` variable.
+For the setup it is recommended to clone this repository and then add its `/bin` directory into your `PATH` variable.
 
 ```bash
 git clone git@github.com:experimental-software/plotters.git
@@ -27,7 +27,7 @@ cd plotters
 PATH="$(pwd)/bin:${PATH}"
 ```
 
-To have access to the plotters every time you start your terminal, add the path extension into your `~/.bashrc` or `~/.bash_profile`, e.g. like this:
+To have access to the plotters every time you start a new terminal, add the path extension into your `~/.bashrc` or `~/.bash_profile`, e.g. like this:
 
 ```bash
 PATH="~/src/experimental-software/plotters/bin:${PATH}"
@@ -41,7 +41,7 @@ Then you can use the bash scripts to generate diagrams anywhere on the terminal,
 
 > draw.io (...) is a configurable diagramming/whiteboarding visualization application. [[github.com]](https://github.com/jgraph/drawio)
 
-**Compile diagram**
+**Plot diagram**
 
 Call `drawio.sh` with the source file as positional parameter to plot the diagram to the default format (PNG).
 
@@ -171,6 +171,7 @@ Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hell
 
 ```
 $ plantuml.sh -f svg examples/plantuml/hello-world.puml
+Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hello-world.svg
 ```
 
 **Help**
@@ -179,6 +180,9 @@ To get an overview over which options are available for the script, call it with
 
 ```
 $ plantuml.sh -h
+plantuml.sh [-wh] [-f target_format] source_file
+
+See https://plantuml.com for diagram syntax.
 ```
 
 **Examples**
