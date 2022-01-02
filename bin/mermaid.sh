@@ -14,9 +14,9 @@ done
 DIAGRAM=${@:$OPTIND:1}
 
 if [[ $HELP == 'true' || -z "$DIAGRAM" ]]; then
-  echo "mermaid.sh [-wh] [-f format] diagram"
+  echo "mermaid.sh [-wh] [-f target_format] source_file"
   echo
-  echo "See https://mermaid-js.github.io for syntax."
+  echo "See https://mermaid-js.github.io for diagram syntax."
   exit 0
 fi
 
