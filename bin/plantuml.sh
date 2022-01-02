@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # https://hub.docker.com/r/karfau/plantuml/tags
 # See https://github.com/karfau/plantuml-docker/blob/main/build.gradle for used PlantUML version

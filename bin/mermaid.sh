@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 FORMAT="png"
 MERMAID_VERSION=8.13.5 # https://github.com/mermaid-js/mermaid-cli/tags

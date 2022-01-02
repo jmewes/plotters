@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # https://hub.docker.com/repository/docker/experimentalsoftware/graphviz-dot/tags
 # https://gitlab.com/graphviz/graphviz/-/tags

@@ -22,6 +22,49 @@ PATH="$(pwd)/bin:${PATH}"
 
 Then you can use the bash scripts to generate diagrams anywhere on the terminal, using relative or absolute path declarations for the source files. It will generate the diagram as sibling of the source file.
 
+### DrawIO (diagrams.net)
+
+> draw.io, this project, is a configurable diagramming/whiteboarding visualization application. [[github.com]](https://github.com/jgraph/drawio)
+
+#### Compile diagram
+
+Call `drawio.sh` with the source file as positional parameter.
+
+```
+$ drawio.sh examples/drawio/hello-world.drawio
+Generating /home/janux/src/experimental-software/plotters/examples/drawio/hello-world.png
++ export file : 
+++ export page 1 : Page-1
++++ generate png file
+```
+
+#### Target format
+
+With the help of the `-f` parameter, you can change the target format of the plotted diagram.
+
+```
+$ drawio.sh -f svg examples/drawio/hello-world.drawio
+Generating /home/janux/src/experimental-software/plotters/examples/drawio/hello-world.svg
++ export file : 
+++ export page 1 : Page-1
++++ generate svg file
+```
+
+#### Help
+
+To get an overview over which options are available for the script, call it with the `-h` flag.
+
+```
+$ drawio.sh -h
+drawio.sh [-wh] [-f target_format] source_file
+
+See https://www.diagrams.net for DrawIO documentation.
+```
+
+**Examples**
+
+Examples for DrawIO digrams can be found [here](./examples/drawio).
+
 ### Graphviz
 
 > Graphviz is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks. It has important applications in networking, bioinformatics, software engineering, database and web design, machine learning, and in visual interfaces for other technical domains. - [graphviz.org](https://graphviz.org/)
