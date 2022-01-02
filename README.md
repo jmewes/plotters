@@ -26,10 +26,25 @@ Then you can use the bash scripts to generate diagrams anywhere on the terminal,
 
 > Graphviz is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks. It has important applications in networking, bioinformatics, software engineering, database and web design, machine learning, and in visual interfaces for other technical domains. - [graphviz.org](https://graphviz.org/)
 
+**Compile diagram**
+
+Call `graphviz.sh` with the source file as positional parameter.
+
 ```
 $ graphviz.sh examples/graphviz/hello-world.dot
 Generating /home/janux/src/experimental-software/plotters/examples/graphviz/hello-world.png
 ```
+
+**Target format**
+
+With the help of the `-f` parameter, you can change the target format of the plotted diagram.
+
+```
+$ graphviz.sh -f svg examples/graphviz/hello-world.dot
+Generating /home/janux/src/experimental-software/plotters/examples/graphviz/hello-world.svg
+```
+
+**Help**
 
 To get an overview over which options are available for the script, call it with the `-h` flag.
 
@@ -39,6 +54,8 @@ graphviz.sh [-wh] [-f target_format] source_file
 
 See https://graphviz.org/documentation for diagram syntax.
 ```
+
+**Examples**
 
 Examples for Graphviz digrams can be found [here](./examples/graphviz).
 
