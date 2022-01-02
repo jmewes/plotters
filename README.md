@@ -24,9 +24,9 @@ Then you can use the bash scripts to generate diagrams anywhere on the terminal,
 
 ### DrawIO (diagrams.net)
 
-> draw.io, this project, is a configurable diagramming/whiteboarding visualization application. [[github.com]](https://github.com/jgraph/drawio)
+> draw.io (...) is a configurable diagramming/whiteboarding visualization application. [[github.com]](https://github.com/jgraph/drawio)
 
-#### Compile diagram
+**Compile diagram**
 
 Call `drawio.sh` with the source file as positional parameter.
 
@@ -38,7 +38,7 @@ Generating /home/janux/src/experimental-software/plotters/examples/drawio/hello-
 +++ generate png file
 ```
 
-#### Target format
+**Target format**
 
 With the help of the `-f` parameter, you can change the target format of the plotted diagram.
 
@@ -50,7 +50,7 @@ Generating /home/janux/src/experimental-software/plotters/examples/drawio/hello-
 +++ generate svg file
 ```
 
-#### Help
+**Help**
 
 To get an overview over which options are available for the script, call it with the `-h` flag.
 
@@ -67,11 +67,11 @@ Examples for DrawIO digrams can be found [here](./examples/drawio).
 
 ### Graphviz
 
-> Graphviz is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks. It has important applications in networking, bioinformatics, software engineering, database and web design, machine learning, and in visual interfaces for other technical domains. - [graphviz.org](https://graphviz.org/)
+> Graphviz is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks. It has important applications in networking, bioinformatics, software engineering, database and web design, machine learning, and in visual interfaces for other technical domains. [[graphviz.org]](https://graphviz.org/)
 
-**Compile diagram**
+**Plot diagram**
 
-Call `graphviz.sh` with the source file as positional parameter.
+Call `graphviz.sh` with the source file as positional parameter to plot the diagram to the default format (PNG).
 
 ```
 $ graphviz.sh examples/graphviz/hello-world.dot
@@ -104,13 +104,29 @@ Examples for Graphviz digrams can be found [here](./examples/graphviz).
 
 ### Mermaid
 
-> Mermaid lets you create diagrams and visualizations using text and code. It is a Javascript based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically. - [mermaid-js.github.io](https://mermaid-js.github.io/mermaid/#/)
+> Mermaid lets you create diagrams and visualizations using text and code. It is a Javascript based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically. [[mermaid-js.github.io]](https://mermaid-js.github.io/mermaid/#/)
+
+**Plot diagram**
+
+Call `mermaid.sh` with the source file as positional parameter to plot the diagram to the default format (PNG).
 
 ```
 $ mermaid.sh examples/mermaid/hello-world.mm
 Generating /home/janux/src/experimental-software/plotters/examples/mermaid/hello-world.png
 Generating single mermaid chart
 ```
+
+**Target format**
+
+With the help of the `-f` parameter, you can change the target format of the plotted diagram.
+
+```
+$ mermaid.sh -f svg examples/mermaid/hello-world.mm
+Generating /home/janux/src/experimental-software/plotters/examples/mermaid/hello-world.svg
+Generating single mermaid chart
+```
+
+**Help**
 
 To get an overview over which options are available for the script, call it with the `-h` flag.
 
@@ -125,17 +141,21 @@ Examples for Mermaid digrams can be found [here](./examples/mermaid).
 
 ### PlantUML
 
-> PlantUML is a component that allows to quickly write: Sequence diagram, usecase diagram, class diagram, object diagram, activity diagram, component diagram, deployment diagram, state diagram, timing diagram. (...) - [plantuml.com](https://plantuml.com/)
+> PlantUML is a component that allows to quickly write: Sequence diagram, usecase diagram, class diagram, object diagram, activity diagram, component diagram, deployment diagram, state diagram, timing diagram. (...) [[plantuml.com]](https://plantuml.com/)
 
 ```
 $ plantuml.sh examples/plantuml/hello-world.puml
 Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hello-world.png
 ```
 
+**Help**
+
 To get an overview over which options are available for the script, call it with the `-h` flag.
 
 ```
 $ plantuml.sh -h
 ```
+
+**Examples**
 
 Examples for PlantUML digrams can be found [here](./examples/plantuml).
