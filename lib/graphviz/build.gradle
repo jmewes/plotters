@@ -1,0 +1,20 @@
+task build(type: Exec) {
+    executable "bash"
+    args "-c", '''
+        docker build -t experimentalsoftware/graphviz-dot .
+    '''
+}
+
+task tag(type: Exec) {
+    executable "bash"
+    args "-c", '''
+        docker tag experimentalsoftware/graphviz-dot:latest experimentalsoftware/graphviz-dot:${GRAPHVIZ_VERSION}
+    '''
+}
+
+task publish(type: Exec) {
+    executable "bash"
+    args "-c", '''
+        docker push experimentalsoftware/graphviz-dot --all-tags
+    '''
+}
