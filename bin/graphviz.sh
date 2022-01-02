@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+which docker > /dev/null 2>&1 || { echo "ERROR: \`docker\` not installed" ; exit 1; }
+which readlink > /dev/null 2>&1 || { echo "ERROR: \`readlink\` not installed" ; exit 1; }
+which dirname > /dev/null 2>&1 || { echo "ERROR: \`dirname\` not installed" ; exit 1; }
+which basename > /dev/null 2>&1 || { echo "ERROR: \`basename\` not installed" ; exit 1; }
+
 # https://hub.docker.com/repository/docker/experimentalsoftware/graphviz-dot/tags
 # https://gitlab.com/graphviz/graphviz/-/tags
 GRAPHVIZ_VERSION=2.50.0
@@ -29,8 +34,15 @@ BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
 
 if [[ $WATCH == 'true' ]]; then
-  echo "(Re-)generating $DIRNAME/$RESULT"
-  ls $DIAGRAM | entr bash -c "cat ${DIAGRAM} | docker run -i experimentalsoftware/graphviz-dot:${GRAPHVIZ_VERSION} dot -T${FORMAT} > ${DIRNAME}/${RESULT}"
+  which entr > /dev/null 2>&1
+  if [[ $? -eq 0 ]]; then
+    echo "(Re-)generating $DIRNAME/$RESULT"
+    ls $DIAGRAM | entr bash -c "cat ${DIAGRAM} | docker run -i experimentalsoftware/graphviz-dot:${GRAPHVIZ_VERSION} dot -T${FORMAT} > ${DIRNAME}/${RESULT}"
+  else
+    echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag."
+    echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions."
+    exit 1
+  fi
 else
   echo "Generating $DIRNAME/$RESULT"
   cat ${DIAGRAM} | docker run -i experimentalsoftware/graphviz-dot:${GRAPHVIZ_VERSION} dot -T${FORMAT} > ${DIRNAME}/${RESULT}

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+which docker > /dev/null 2>&1 || { echo "ERROR: \`docker\` not installed" ; exit 1; }
+which readlink > /dev/null 2>&1 || { echo "ERROR: \`readlink\` not installed" ; exit 1; }
+which dirname > /dev/null 2>&1 || { echo "ERROR: \`dirname\` not installed" ; exit 1; }
+which basename > /dev/null 2>&1 || { echo "ERROR: \`basename\` not installed" ; exit 1; }
+
 # https://github.com/rlespinasse/drawio-export/tags
 # https://github.com/rlespinasse/docker-drawio-desktop-headless/blob/v1.x/Dockerfile#L5
 # https://github.com/jgraph/drawio-desktop/tags
@@ -30,8 +35,15 @@ BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
 
 if [[ $WATCH == 'true' ]]; then
-  echo "(Re-)generating $DIRNAME/$RESULT"
-  ls $DIAGRAM | entr bash -c "docker run -it -v ${DIRNAME}:/data rlespinasse/drawio-export:${DRAWIO_EXPORT_VERSION} /data/${BASENAME} --format ${FORMAT} --border 25 --output /data --remove-page-suffix"
+  which entr > /dev/null 2>&1
+  if [[ $? -eq 0 ]]; then
+    echo "(Re-)generating $DIRNAME/$RESULT"
+    ls $DIAGRAM | entr bash -c "docker run -it -v ${DIRNAME}:/data rlespinasse/drawio-export:${DRAWIO_EXPORT_VERSION} /data/${BASENAME} --format ${FORMAT} --border 25 --output /data --remove-page-suffix"
+  else
+    echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag."
+    echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions."
+    exit 1
+  fi
 else
   echo "Generating $DIRNAME/$RESULT"
   docker run -it -v ${DIRNAME}:/data rlespinasse/drawio-export:${DRAWIO_EXPORT_VERSION} /data/${BASENAME} --format ${FORMAT} --border 25 --output /data --remove-page-suffix
