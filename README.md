@@ -2,7 +2,16 @@
 
 This repository contains a collection of scripts which can plot diagrams into images.
 
+The following diagramming tools are supported:
+
+- [DrawIO](#drawio-diagramsnet)
+- [Graphviz](#graphviz)
+- [Mermaid](#mermaid)
+- [PlantUML](#plantuml)
+
 ## Dependencies
+
+To be able to use the scripts, you need to have the following tools installed:
 
 - **Bash**: The scripts are simple bash scripts.
 - **Docker**: Docker is used to use the diagramming tool without installing them directly.
@@ -18,6 +27,12 @@ cd plotters
 PATH="$(pwd)/bin:${PATH}"
 ```
 
+To have access to the plotters every time you start your terminal, add the path extension into your `~/.bashrc` or `~/.bash_profile`, e.g. like this:
+
+```bash
+PATH="~/src/experimental-software/plotters/bin:${PATH}"
+```
+
 ## Usage
 
 Then you can use the bash scripts to generate diagrams anywhere on the terminal, using relative or absolute path declarations for the source files. It will generate the diagram as sibling of the source file.
@@ -28,7 +43,7 @@ Then you can use the bash scripts to generate diagrams anywhere on the terminal,
 
 **Compile diagram**
 
-Call `drawio.sh` with the source file as positional parameter.
+Call `drawio.sh` with the source file as positional parameter to plot the diagram to the default format (PNG).
 
 ```
 $ drawio.sh examples/drawio/hello-world.drawio
@@ -143,9 +158,19 @@ Examples for Mermaid digrams can be found [here](./examples/mermaid).
 
 > PlantUML is a component that allows to quickly write: Sequence diagram, usecase diagram, class diagram, object diagram, activity diagram, component diagram, deployment diagram, state diagram, timing diagram. (...) [[plantuml.com]](https://plantuml.com/)
 
+**Plot diagram**
+
+Call `plantuml.sh` with the source file as positional parameter to plot the diagram to the default format (PNG).
+
 ```
 $ plantuml.sh examples/plantuml/hello-world.puml
 Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hello-world.png
+```
+
+**Target format**
+
+```
+$ plantuml.sh -f svg examples/plantuml/hello-world.puml
 ```
 
 **Help**
