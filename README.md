@@ -152,6 +152,8 @@ mermaid.sh [-wh] [-f format] diagram
 See https://mermaid-js.github.io for syntax.
 ```
 
+**Examples**
+
 Examples for Mermaid digrams can be found [here](./examples/mermaid).
 
 ### PlantUML
