@@ -34,11 +34,18 @@ DIRNAME=$(dirname ${DIAGRAM})
 BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
 
+
+COMPILE_DIAGRAM_CMD="docker run -it -v ${DIRNAME}:/data rlespinasse/drawio-export:${DRAWIO_EXPORT_VERSION} /data/${BASENAME} --format ${FORMAT} --border 25 --output /data --remove-page-suffix"
+
+# Workaround for 'drawio-export' container insisting on running as root which
+# will lead to the generated file being owned by root.
+CHANGE_OWNER_CMD="docker run -it -v ${DIRNAME}:/data  fedora:rawhide bash -c 'chown $UID:$UID /data/${RESULT}'"
+
 if [[ $WATCH == 'true' ]]; then
   which entr > /dev/null 2>&1
   if [[ $? -eq 0 ]]; then
     echo "(Re-)generating $DIRNAME/$RESULT"
-    ls $DIAGRAM | entr bash -c "docker run -it -v ${DIRNAME}:/data rlespinasse/drawio-export:${DRAWIO_EXPORT_VERSION} /data/${BASENAME} --format ${FORMAT} --border 25 --output /data --remove-page-suffix"
+    ls $DIAGRAM | entr bash -c "eval \"${COMPILE_DIAGRAM_CMD}\" && eval \"${CHANGE_OWNER_CMD}\""
   else
     echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag."
     echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions."
@@ -46,5 +53,6 @@ if [[ $WATCH == 'true' ]]; then
   fi
 else
   echo "Generating $DIRNAME/$RESULT"
-  docker run -it -v ${DIRNAME}:/data rlespinasse/drawio-export:${DRAWIO_EXPORT_VERSION} /data/${BASENAME} --format ${FORMAT} --border 25 --output /data --remove-page-suffix
+  eval "${COMPILE_DIAGRAM_CMD}"
+  eval "${CHANGE_OWNER_CMD}"
 fi
