@@ -39,7 +39,7 @@ COMPILE_DIAGRAM_CMD="docker run -it -v ${DIRNAME}:/data rlespinasse/drawio-expor
 
 # Workaround for 'drawio-export' container insisting on running as root which
 # will lead to the generated file being owned by root.
-CHANGE_OWNER_CMD="docker run -it -v ${DIRNAME}:/data  fedora:rawhide bash -c 'chown $UID:$UID /data/${RESULT}'"
+CHANGE_OWNER_CMD="docker run -it -v ${DIRNAME}:/data debian:buster bash -c 'chown $UID:$UID /data/${RESULT}'"
 
 if [[ $WATCH == 'true' ]]; then
   which entr > /dev/null 2>&1
