@@ -8,7 +8,7 @@ which basename > /dev/null 2>&1 || { echo "ERROR: \`basename\` not installed" ; 
 # https://hub.docker.com/r/karfau/plantuml/tags
 # See https://github.com/karfau/plantuml-docker/blob/main/build.gradle for used PlantUML version
 # See https://plantuml.com/download for current PlantUML version
-PLANTUML_VERSION=1.2021.16
+PLANTUML_VERSION=1.2022.0
 
 FORMAT="png"
 
