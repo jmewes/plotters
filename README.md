@@ -13,7 +13,7 @@ The following diagramming tools are supported:
 
 To be able to use the scripts, you need to have the following tools installed:
 
-- **[Bash](https://www.gnu.org/software/bash/)**: The scripts are simple Bash scripts.
+- **[Bash](https://www.gnu.org/software/bash/)**: The plotters are Bash scripts which wrap the diagramming tools.
 - **[Docker](https://www.docker.com)**: The diagramming tools are packaged in a Docker container, to use them without the need to install them natively on your PC.
 - **[entr](https://dev.to/janux_de/run-a-bash-command-after-file-changes-unix-24jj)**: (Optional) If you have `entr` installed natively on your PC, you can use the `-w` option of the scripts which will automatically re-render the diagrams after the source file has been changed.
 
