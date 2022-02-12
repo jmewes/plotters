@@ -7,7 +7,7 @@ which basename > /dev/null 2>&1 || { echo "ERROR: \`basename\` not installed" ; 
 
 FORMAT="png"
 
-MERMAID_VERSION=8.13.5 # https://github.com/mermaid-js/mermaid-cli/tags
+MERMAID_VERSION=8.13.10 # https://github.com/mermaid-js/mermaid-cli/tags
 
 USAGE=`cat <<EOF
 Mermaid wrapper, version ${MERMAID_VERSION}
