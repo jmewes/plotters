@@ -17,6 +17,8 @@ To be able to use the scripts, you need to have the following tools installed:
 - **[Docker](https://www.docker.com)**: The diagramming tools are packaged in a Docker container, to use them without the need to install them natively on your PC.
 - **[entr](https://dev.to/janux_de/run-a-bash-command-after-file-changes-unix-24jj)**: (Optional) If you have `entr` installed natively on your PC, you can use the `-w` option of the scripts which will automatically re-render the diagrams after the source file has been changed.
 
+The plotters are tested on Ubuntu and macOS.
+
 ## Setup
 
 For the setup, it is recommended to clone this repository and then add its `/bin` directory into your `PATH` variable.
