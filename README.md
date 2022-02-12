@@ -70,7 +70,7 @@ Generating /home/janux/src/experimental-software/plotters/examples/drawio/hello-
 To get an overview of which options are available for the script, call it with the `-h` flag.
 
 ```
-$ drawio.sh -h
+drawio.sh -h
 ```
 
 **Examples**
@@ -104,7 +104,7 @@ Generating /home/janux/src/experimental-software/plotters/examples/graphviz/hell
 To get an overview of which options are available for the script, call it with the `-h` flag.
 
 ```
-$ graphviz.sh -h
+graphviz.sh -h
 ```
 
 **Examples**
@@ -140,7 +140,7 @@ Generating single mermaid chart
 To get an overview of which options are available for the script, call it with the `-h` flag.
 
 ```
-$ mermaid.sh -h
+mermaid.sh -h
 ```
 
 **Examples**
@@ -172,7 +172,7 @@ Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hell
 To get an overview of which options are available for the script, call it with the `-h` flag.
 
 ```
-$ plantuml.sh -h
+plantuml.sh -h
 ```
 
 **Examples**
