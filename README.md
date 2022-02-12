@@ -71,9 +71,6 @@ To get an overview of which options are available for the script, call it with t
 
 ```
 $ drawio.sh -h
-drawio.sh [-wh] [-f target_format] source_file
-
-See https://www.diagrams.net for DrawIO documentation.
 ```
 
 **Examples**
@@ -108,9 +105,6 @@ To get an overview of which options are available for the script, call it with t
 
 ```
 $ graphviz.sh -h
-graphviz.sh [-wh] [-f target_format] source_file
-
-See https://graphviz.org/documentation for diagram syntax.
 ```
 
 **Examples**
@@ -126,7 +120,7 @@ Examples for Graphviz digrams can be found [here](./examples/graphviz).
 Call `mermaid.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
 
 ```
-$ mermaid.sh examples/mermaid/hello-world.mm
+$ mermaid.sh examples/mermaid/hello-world.txt
 Generating /home/janux/src/experimental-software/plotters/examples/mermaid/hello-world.png
 Generating single mermaid chart
 ```
@@ -147,9 +141,6 @@ To get an overview of which options are available for the script, call it with t
 
 ```
 $ mermaid.sh -h
-mermaid.sh [-wh] [-f format] diagram
-
-See https://mermaid-js.github.io for syntax.
 ```
 
 **Examples**
@@ -182,9 +173,6 @@ To get an overview of which options are available for the script, call it with t
 
 ```
 $ plantuml.sh -h
-plantuml.sh [-wh] [-f target_format] source_file
-
-See https://plantuml.com for diagram syntax.
 ```
 
 **Examples**

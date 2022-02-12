@@ -11,6 +11,25 @@ GRAPHVIZ_VERSION=2.50.0
 
 FORMAT="png"
 
+USAGE=`cat <<EOF
+Graphviz wrapper, version ${GRAPHVIZ_VERSION}
+
+Renders a binary image as a sibling of a Graphviz source file.
+
+Usage:  graphviz.sh [option] source-file
+Examples:
+        graphviz.sh hello-world.dot
+        graphviz.sh -f svg hello-world.dot
+        graphviz.sh -w hello-world.dot
+Options:
+        -f  The format of the generated image.
+        -w  Watch file changes and re-render the diagram every time the file changes.
+        -h  Print the help text.
+Diagram syntax:
+        https://graphviz.org/documentation
+EOF
+`
+
 while getopts "f: w h" flag; do
 case "$flag" in
     h) HELP='true';;
@@ -22,10 +41,8 @@ done
 DIAGRAM=${@:$OPTIND:1}
 
 if [[ $HELP == 'true' || -z "$DIAGRAM" ]]; then
-  echo "graphviz.sh [-wh] [-f target_format] source_file"
-  echo
-  echo "See https://graphviz.org/documentation for diagram syntax."
-  exit 0
+  echo "${USAGE}" >&2
+  exit 1
 fi
 
 DIAGRAM=$(readlink -f $DIAGRAM)
@@ -39,8 +56,8 @@ if [[ $WATCH == 'true' ]]; then
     echo "(Re-)generating $DIRNAME/$RESULT"
     ls $DIAGRAM | entr bash -c "cat ${DIAGRAM} | docker run -i experimentalsoftware/graphviz-dot:${GRAPHVIZ_VERSION} dot -T${FORMAT} > ${DIRNAME}/${RESULT}"
   else
-    echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag."
-    echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions."
+    echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag." >&2
+    echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions." >&2
     exit 1
   fi
 else

@@ -12,6 +12,25 @@ PLANTUML_VERSION=1.2022.0
 
 FORMAT="png"
 
+USAGE=`cat <<EOF
+PlantUML wrapper, version ${PLANTUML_VERSION}
+
+Renders a binary image as a sibling of a PlantUML source file.
+
+Usage:  plantuml.sh [option] source-file
+Examples:
+        plantuml.sh hello-world.puml
+        plantuml.sh -f svg hello-world.puml
+        plantuml.sh -w hello-world.puml
+Options:
+        -f  The format of the generated image.
+        -w  Watch file changes and re-render the diagram every time the file changes.
+        -h  Print the help text.
+Diagram syntax:
+        https://plantuml.com
+EOF
+`
+
 while getopts "f: w h" flag; do
 case "$flag" in
     h) HELP='true';;
@@ -23,10 +42,8 @@ done
 DIAGRAM=${@:$OPTIND:1}
 
 if [[ $HELP == 'true' || -z "$DIAGRAM" ]]; then
-  echo "plantuml.sh [-wh] [-f target_format] source_file"
-  echo
-  echo "See https://plantuml.com for diagram syntax."
-  exit 0
+  echo "${USAGE}" >&2
+  exit 1
 fi
 
 DIAGRAM=$(readlink -f $DIAGRAM)
@@ -40,8 +57,8 @@ if [[ $WATCH == 'true' ]]; then
     echo "(Re-)generating $DIRNAME/$RESULT"
     ls $DIAGRAM | entr bash -c "cat ${DIAGRAM} | docker run -i karfau/plantuml:${PLANTUML_VERSION} -pipe -t${FORMAT} > ${DIRNAME}/${RESULT}"
   else
-    echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag."
-    echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions."
+    echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag." >&2
+    echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions." >&2
     exit 1
   fi
 else

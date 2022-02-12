@@ -12,6 +12,25 @@ DRAWIO_EXPORT_VERSION=4.3.0
 
 FORMAT="png"
 
+USAGE=`cat <<EOF
+rlespinasse/drawio-export wrapper, version ${DRAWIO_EXPORT_VERSION}
+
+Renders a binary image as a sibling of a DrawIO source file.
+
+Usage:  drawio.sh [option] source-file
+Examples:
+        drawio.sh hello-world.drawio
+        drawio.sh -f svg hello-world.drawio
+        drawio.sh -w hello-world.drawio
+Options:
+        -f  The format of the generated image.
+        -w  Watch file changes and re-render the diagram every time the file changes.
+        -h  Print the help text.
+Diagram syntax:
+        https://diagrams.net
+EOF
+`
+
 while getopts "f: w h" flag; do
 case "$flag" in
     h) HELP='true';;
@@ -23,10 +42,8 @@ done
 DIAGRAM=${@:$OPTIND:1}
 
 if [[ $HELP == 'true' || -z "$DIAGRAM" ]]; then
-  echo "drawio.sh [-wh] [-f target_format] source_file"
-  echo
-  echo "See https://www.diagrams.net for DrawIO documentation."
-  exit 0
+  echo "${USAGE}" >&2
+  exit 1
 fi
 
 DIAGRAM=$(readlink -f $DIAGRAM)
@@ -47,8 +64,8 @@ if [[ $WATCH == 'true' ]]; then
     echo "(Re-)generating $DIRNAME/$RESULT"
     ls $DIAGRAM | entr bash -c "eval \"${COMPILE_DIAGRAM_CMD}\" && eval \"${CHANGE_OWNER_CMD}\""
   else
-    echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag."
-    echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions."
+    echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag." >&2
+    echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions." >&2
     exit 1
   fi
 else
