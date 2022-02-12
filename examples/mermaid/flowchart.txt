@@ -1,0 +1,23 @@
+flowchart TB
+    classDef field fill:#F2F2F2;
+    classDef method fill:#848484;
+
+    subgraph registration
+      subgraph ClientRegistration
+      
+        registrationId:::field
+        clientId:::field
+        clientSecret:::field
+        
+        subgraph Builder
+          ClientRegistration#Builder:::method
+        end 
+        
+      end
+      
+      subgraph ClientRegistrations
+        ClientRegistrations#fromIssuerLocation:::method
+        
+        ClientRegistrations#fromIssuerLocation --> ClientRegistration#Builder
+      end 
+    end

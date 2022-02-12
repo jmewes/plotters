@@ -1,0 +1,19 @@
+%% https://mermaid-js.github.io/mermaid/#/sequenceDiagram
+
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant RS as Resource Server
+    participant AS as Authorization Server
+    
+    C->>AS: Authorization Grant
+    AS-->>C: Access Token & Refresh Token
+    
+    C->>RS: Access Token
+    RS-->>C: Protected Resource
+    
+    C->>RS: Access Token
+    RS-->>C: Invalid Token Error
+    
+    C->>AS: Refresh Token
+    AS-->>C: Access Token & Optional Refresh Token
