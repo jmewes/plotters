@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 which docker > /dev/null 2>&1 || { echo "ERROR: \`docker\` not installed" ; exit 1; }
-which readlink > /dev/null 2>&1 || { echo "ERROR: \`readlink\` not installed" ; exit 1; }
+which perl > /dev/null 2>&1 || { echo "ERROR: \`perl\` not installed" ; exit 1; }
 which dirname > /dev/null 2>&1 || { echo "ERROR: \`dirname\` not installed" ; exit 1; }
 which basename > /dev/null 2>&1 || { echo "ERROR: \`basename\` not installed" ; exit 1; }
 
@@ -45,7 +45,7 @@ if [[ $HELP == 'true' || -z "$DIAGRAM" ]]; then
   exit 1
 fi
 
-DIAGRAM=$(readlink -f $DIAGRAM)
+DIAGRAM=$(perl -MCwd -e 'print Cwd::abs_path shift' ${DIAGRAM})
 DIRNAME=$(dirname ${DIAGRAM})
 BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
