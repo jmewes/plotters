@@ -4,7 +4,6 @@ This repository contains a collection of Docker-based Bash scripts which can plo
 
 The following diagramming tools are supported:
 
-- [DrawIO](#drawio-diagramsnet)
 - [Graphviz](#graphviz)
 - [Mermaid](#mermaid)
 - [PlantUML](#plantuml)
@@ -38,46 +37,6 @@ PATH="~/src/experimental-software/plotters/bin:${PATH}"
 ## Usage
 
 Then you can use the bash scripts to generate diagrams anywhere on the terminal, using relative or absolute path declarations for the source files. It will generate the diagram as a sibling of the source file.
-
-### DrawIO (diagrams.net)
-
-> draw.io (...) is a configurable diagramming/whiteboarding visualization application. [[github.com]](https://github.com/jgraph/drawio)
-
-**Plot diagram**
-
-Call `drawio.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
-
-```
-$ drawio.sh examples/drawio/hello-world.drawio
-Generating /home/janux/src/experimental-software/plotters/examples/drawio/hello-world.png
-+ export file : 
-++ export page 1 : Page-1
-+++ generate png file
-```
-
-**Target format**
-
-With the help of the `-f` parameter, you can change the target format of the plotted diagram.
-
-```
-$ drawio.sh -f svg examples/drawio/hello-world.drawio
-Generating /home/janux/src/experimental-software/plotters/examples/drawio/hello-world.svg
-+ export file : 
-++ export page 1 : Page-1
-+++ generate svg file
-```
-
-**Help**
-
-To get an overview of which options are available for the script, call it with the `-h` flag.
-
-```
-drawio.sh -h
-```
-
-**Examples**
-
-Examples for DrawIO digrams can be found [here](./examples/drawio).
 
 ### Graphviz
 
