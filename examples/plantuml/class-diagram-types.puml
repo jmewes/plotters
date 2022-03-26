@@ -1,0 +1,30 @@
+@startuml
+
+class ExampleClass {
+  property
+  method()
+}
+
+interface ExampleInterface {}
+
+abstract ExampleAbstractClass {
+  templateMethod()
+}
+
+enum Week {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+annotation ExampleAnnotation {
+  value(string)
+}
+
+class GenericType<? extends Something> {}
+
+@enduml

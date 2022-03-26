@@ -1,0 +1,14 @@
+@startuml
+
+package com.experimental.registration {
+  class Patient {}
+}
+
+package com.experimental.pharmacy {
+  class Drug {}
+  class Prescription {}
+  Prescription --> Drug
+  Prescription --> Patient
+}
+
+@enduml

@@ -1,0 +1,18 @@
+sequenceDiagram
+    autonumber
+    participant A as PersonA
+    participant B as PersonB
+    
+    A ->> B : Say hello
+    alt if true
+      B ->> A : Say hello
+    else if false
+      A ->> B : Say hello
+    else
+      A ->> B : Say hello?
+    end
+    
+    alt if true
+      A ->> B : Say hello
+    end
+    

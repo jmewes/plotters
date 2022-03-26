@@ -48,12 +48,14 @@ if [[ $HELP == 'true' || -z "$DIAGRAM" ]]; then
   exit 1
 fi
 
+set -e
 DIAGRAM=$(perl -MCwd -e 'print Cwd::abs_path shift' ${DIAGRAM})
 DIRNAME=$(dirname ${DIAGRAM})
 BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
 DOCKER_IMAGE="experimentalsoftware/graphviz-dot:${GRAPHVIZ_VERSION}"
 COMPILE_CMD="cat ${DIAGRAM} | docker run -i ${DOCKER_IMAGE} dot -T${FORMAT} > ${DIRNAME}/${RESULT}"
+set +e
 
 if [[ "$(docker images -q ${DOCKER_IMAGE} 2> /dev/null)" == "" ]]; then
   docker pull ${DOCKER_IMAGE} || exit 1

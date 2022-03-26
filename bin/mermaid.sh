@@ -46,12 +46,14 @@ if [[ ${HELP} == 'true' || -z "${DIAGRAM}" ]]; then
   exit 1
 fi
 
+set -e
 DIAGRAM=$(perl -MCwd -e 'print Cwd::abs_path shift' ${DIAGRAM})
 DIRNAME=$(dirname ${DIAGRAM})
 BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
 DOCKER_IMAGE="minlag/mermaid-cli:${MERMAID_VERSION}"
 COMPILE_CMD="docker run -u ${UID} -it -v ${DIRNAME}:/data ${DOCKER_IMAGE} -i /data/${BASENAME} --output /data/${RESULT}"
+set +x
 
 if [[ "$(docker images -q ${DOCKER_IMAGE} 2> /dev/null)" == "" ]]; then
   docker pull ${DOCKER_IMAGE} || exit 1

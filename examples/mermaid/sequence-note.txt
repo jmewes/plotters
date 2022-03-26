@@ -1,0 +1,11 @@
+sequenceDiagram
+    autonumber
+    participant A as PersonA
+    participant B as PersonB
+    participant C as PersonC
+        
+    A ->> B : Hello?
+    B ->> C : Hello
+    Note right of C: Greet back
+    C -->> B : Hello
+    B -->> A : Hello!
