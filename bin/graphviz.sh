@@ -17,14 +17,17 @@ Graphviz wrapper, version ${GRAPHVIZ_VERSION}
 Renders a binary image as a sibling of a Graphviz source file.
 
 Usage:  graphviz.sh [option] source-file
+
 Examples:
         graphviz.sh hello-world.dot
         graphviz.sh -f svg hello-world.dot
         graphviz.sh -w hello-world.dot
+
 Options:
         -f  The format of the generated image.
         -w  Watch file changes and re-render the diagram every time the file changes.
         -h  Print the help text.
+
 Diagram syntax:
         https://graphviz.org/documentation
 EOF
@@ -49,18 +52,24 @@ DIAGRAM=$(perl -MCwd -e 'print Cwd::abs_path shift' ${DIAGRAM})
 DIRNAME=$(dirname ${DIAGRAM})
 BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
+DOCKER_IMAGE="experimentalsoftware/graphviz-dot:${GRAPHVIZ_VERSION}"
+COMPILE_CMD="cat ${DIAGRAM} | docker run -i ${DOCKER_IMAGE} dot -T${FORMAT} > ${DIRNAME}/${RESULT}"
 
-if [[ $WATCH == 'true' ]]; then
+if [[ "$(docker images -q ${DOCKER_IMAGE} 2> /dev/null)" == "" ]]; then
+  docker pull ${DOCKER_IMAGE} || exit 1
+fi
+
+if [[ ${WATCH} == 'true' ]]; then
   which entr > /dev/null 2>&1
   if [[ $? -eq 0 ]]; then
-    echo "(Re-)generating $DIRNAME/$RESULT"
-    ls $DIAGRAM | entr bash -c "cat ${DIAGRAM} | docker run -i experimentalsoftware/graphviz-dot:${GRAPHVIZ_VERSION} dot -T${FORMAT} > ${DIRNAME}/${RESULT}"
+    echo "(Re-)generating ${DIRNAME}/${RESULT}"
+    ls ${DIAGRAM} | entr bash -c "eval \"${COMPILE_CMD}\""
   else
     echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag." >&2
-    echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions." >&2
+    echo "See https://bit.ly/36q3nN9 for setup instructions." >&2
     exit 1
   fi
 else
-  echo "Generating $DIRNAME/$RESULT"
-  cat ${DIAGRAM} | docker run -i experimentalsoftware/graphviz-dot:${GRAPHVIZ_VERSION} dot -T${FORMAT} > ${DIRNAME}/${RESULT}
+  echo "Generating ${DIRNAME}/${RESULT}"
+  eval "${COMPILE_CMD}"
 fi

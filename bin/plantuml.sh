@@ -18,14 +18,17 @@ PlantUML wrapper, version ${PLANTUML_VERSION}
 Renders a binary image as a sibling of a PlantUML source file.
 
 Usage:  plantuml.sh [option] source-file
+
 Examples:
         plantuml.sh hello-world.puml
         plantuml.sh -f svg hello-world.puml
         plantuml.sh -w hello-world.puml
+
 Options:
         -f  The format of the generated image.
         -w  Watch file changes and re-render the diagram every time the file changes.
         -h  Print the help text.
+
 Diagram syntax:
         https://plantuml.com
 EOF
@@ -41,7 +44,7 @@ done
 
 DIAGRAM=${@:$OPTIND:1}
 
-if [[ $HELP == 'true' || -z "$DIAGRAM" ]]; then
+if [[ ${HELP} == 'true' || -z "$DIAGRAM" ]]; then
   echo "${USAGE}" >&2
   exit 1
 fi
@@ -50,18 +53,23 @@ DIAGRAM=$(perl -MCwd -e 'print Cwd::abs_path shift' ${DIAGRAM})
 DIRNAME=$(dirname ${DIAGRAM})
 BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
+DOCKER_IMAGE="karfau/plantuml:${PLANTUML_VERSION}"
 
-if [[ $WATCH == 'true' ]]; then
+if [[ "$(docker images -q ${DOCKER_IMAGE} 2> /dev/null)" == "" ]]; then
+  docker pull ${DOCKER_IMAGE} || exit 1
+fi
+
+if [[ ${WATCH} == 'true' ]]; then
   which entr > /dev/null 2>&1
   if [[ $? -eq 0 ]]; then
     echo "(Re-)generating $DIRNAME/$RESULT"
-    ls $DIAGRAM | entr bash -c "cat ${DIAGRAM} | docker run -i karfau/plantuml:${PLANTUML_VERSION} -pipe -t${FORMAT} > ${DIRNAME}/${RESULT}"
+    ls ${DIAGRAM} | entr bash -c "date && cat ${DIAGRAM} | docker run -i ${DOCKER_IMAGE} -pipe -t${FORMAT} > ${DIRNAME}/${RESULT}"
   else
     echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag." >&2
-    echo "See https://github.com/experimental-software/plotters/wiki/entr for setup instructions." >&2
+    echo "See https://bit.ly/36q3nN9 for setup instructions." >&2
     exit 1
   fi
 else
   echo "Generating $DIRNAME/$RESULT"
-  cat ${DIAGRAM} | docker run -i karfau/plantuml:${PLANTUML_VERSION} -pipe -t${FORMAT} > "${DIRNAME}/${RESULT}"
+  cat ${DIAGRAM} | docker run -i ${DOCKER_IMAGE} -pipe -t${FORMAT} > "${DIRNAME}/${RESULT}"
 fi
