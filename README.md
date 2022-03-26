@@ -23,7 +23,8 @@ The plotters are tested on Ubuntu and macOS.
 For the setup, it is recommended to clone this repository and then add its `/bin` directory into your `PATH` variable.
 
 ```bash
-git clone git@github.com:experimental-software/plotters.git || git clone https://github.com/experimental-software/plotters.git
+git clone git@github.com:experimental-software/plotters.git \
+ || git clone https://github.com/experimental-software/plotters.git
 cd plotters
 PATH="$(pwd)/bin:${PATH}"
 ```
