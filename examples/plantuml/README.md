@@ -18,3 +18,15 @@ https://plantuml.com/en/class-diagram
 
 ([source code](./class-diagram-packages.puml))
 
+### Namespaces
+
+![class diagram with namespaces](./class-diagram-namespaces.png)
+
+([source code](./class-diagram-packages.puml))
+
+### Types
+
+![class diagram with different element types](./class-diagram-types.png)
+
+([source code](./class-diagram-types.puml))
+
