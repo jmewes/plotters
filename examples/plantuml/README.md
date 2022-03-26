@@ -12,6 +12,12 @@ https://plantuml.com/en/class-diagram
 
 ([source code](./class-diagram-simple.puml))
 
+### Types
+
+![class diagram with different element types](./class-diagram-types.png)
+
+([source code](./class-diagram-types.puml))
+
 ### Packages
 
 ![class diagram with packages](./class-diagram-packages.png)
@@ -24,9 +30,5 @@ https://plantuml.com/en/class-diagram
 
 ([source code](./class-diagram-packages.puml))
 
-### Types
 
-![class diagram with different element types](./class-diagram-types.png)
-
-([source code](./class-diagram-types.puml))
 
