@@ -1,0 +1,8 @@
+sequenceDiagram
+    autonumber
+    participant A as PersonA
+    participant B as PersonB
+    
+    loop while true
+        A ->> B : Hello!
+    end

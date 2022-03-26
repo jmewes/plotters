@@ -13,11 +13,17 @@ https://mermaid-js.github.io/mermaid/#/sequenceDiagram
 
 ([source code](./sequence.txt))
 
-### Flow control
+### Conditionals
 
-![sequence diagram with flow control](./sequence-flow-ctrl.png)
+![sequence diagram with conditionals](./sequence-conditionals.png)
 
-([source code](./sequence-flow-ctrl.txt) | [docs alt](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=alt) | [docs loops](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=loops))
+([source code](./sequence-flow-ctrl.txt) | [docs](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=alt))
+
+### Loops
+
+![sequence diagram with loop](./sequence-loop.png)
+
+([source code](./sequence-loop.txt) | [docs](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=loops))
 
 ### Note
 
@@ -28,8 +34,6 @@ https://mermaid-js.github.io/mermaid/#/sequenceDiagram
 ## Flowchart
 
 https://mermaid-js.github.io/mermaid/#/flowchart
-
-### Simple
 
 ![flowchart diagram](./flowchart.png)
 
