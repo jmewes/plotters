@@ -1,6 +1,10 @@
 # PlantUML
 
+https://plantuml.com/
+
 ## Class diagram
+
+https://plantuml.com/en/class-diagram
 
 ### Simple
 
@@ -8,11 +12,9 @@
 
 ([source code](./class-diagram-simple.puml))
 
-**References**
+### Packages
 
-- https://plantuml.com/en/class-diagram
+![class diagram with packages](./class-diagram-packages.png)
 
-## References
-
-- https://plantuml.com/
+([source code](./class-diagram-packages.puml))
 
