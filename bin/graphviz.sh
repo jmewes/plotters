@@ -28,8 +28,8 @@ Options:
         -w  Watch file changes and re-render the diagram every time the file changes.
         -h  Print the help text.
 
-Diagram syntax:
-        https://graphviz.org/documentation
+Examples:    
+        https://github.com/experimental-software/plotters/blob/master/examples/graphviz/README.md
 EOF
 `
 

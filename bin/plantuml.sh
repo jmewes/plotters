@@ -29,8 +29,8 @@ Options:
         -w  Watch file changes and re-render the diagram every time the file changes.
         -h  Print the help text.
 
-Diagram syntax:
-        https://plantuml.com
+Examples:
+        https://github.com/experimental-software/plotters/blob/master/examples/plantuml/README.md
 EOF
 `
 

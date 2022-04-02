@@ -26,8 +26,8 @@ Options:
         -w  Watch file changes and re-render the diagram every time the file changes.
         -h  Print the help text.
 
-Diagram syntax:
-        https://mermaid-js.github.io
+Examples:
+        https://github.com/experimental-software/plotters/tree/master/examples/mermaid/README.md
 EOF
 `
 
