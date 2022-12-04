@@ -136,7 +136,3 @@ To get an overview of which options are available for the script, call it with t
 ```
 plantuml.sh -h
 ```
-
-**Examples**
-
-Examples for PlantUML digrams can be found [here](./examples/plantuml).

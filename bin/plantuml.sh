@@ -24,9 +24,6 @@ Examples:
         plantuml.sh hello-world.puml
         plantuml.sh -f svg hello-world.puml
         plantuml.sh -w hello-world.puml
-
-Examples:
-        https://github.com/experimental-software/plotters/blob/master/examples/plantuml/README.md
 EOF
 `
 
