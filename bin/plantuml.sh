@@ -5,11 +5,8 @@ which perl > /dev/null 2>&1 || { echo "ERROR: \`perl\` not installed" ; exit 1; 
 which dirname > /dev/null 2>&1 || { echo "ERROR: \`dirname\` not installed" ; exit 1; }
 which basename > /dev/null 2>&1 || { echo "ERROR: \`basename\` not installed" ; exit 1; }
 
-# https://hub.docker.com/r/karfau/plantuml/tags
-# See https://github.com/karfau/plantuml-docker/blob/main/build.gradle for used PlantUML version
-# See https://plantuml.com/download for current PlantUML version
-
 FORMAT="png"
+DOCKER_IMAGE="karfau/plantuml:latest"
 
 USAGE=`cat <<EOF
 Renders a binary image from a PlantUML source file.
@@ -50,14 +47,6 @@ if [[ ${HELP} == 'true' ]]; then
   exit 0
 fi
 
-set -e
-DIAGRAM=$(perl -MCwd -e 'print Cwd::abs_path shift' ${DIAGRAM})
-DIRNAME=$(dirname ${DIAGRAM})
-BASENAME=$(basename -- "${DIAGRAM}")
-RESULT="${BASENAME%.*}.${FORMAT}"
-DOCKER_IMAGE="karfau/plantuml:latest"
-set +e
-
 if [[ ${UPDATE_VERSON} == 'true' || "$(docker images -q ${DOCKER_IMAGE} 2> /dev/null)" == "" ]]; then
   docker pull ${DOCKER_IMAGE} || exit 1
   echo
@@ -73,9 +62,18 @@ if [[ ${SHOW_VERSION} == 'true' ]]; then
 fi
 
 if [[ -z "$DIAGRAM" ]]; then
+  echo "ERROR: Missing parameter for diagram source file."
+  echo
   echo "${USAGE}" >&2
   exit 1
 fi
+
+set -e
+DIAGRAM=$(perl -MCwd -e 'print Cwd::abs_path shift' ${DIAGRAM})
+DIRNAME=$(dirname ${DIAGRAM})
+BASENAME=$(basename -- "${DIAGRAM}")
+RESULT="${BASENAME%.*}.${FORMAT}"
+set +e
 
 if [[ ${WATCH} == 'true' ]]; then
   which entr > /dev/null 2>&1
