@@ -8,35 +8,36 @@ which basename > /dev/null 2>&1 || { echo "ERROR: \`basename\` not installed" ; 
 # https://hub.docker.com/r/karfau/plantuml/tags
 # See https://github.com/karfau/plantuml-docker/blob/main/build.gradle for used PlantUML version
 # See https://plantuml.com/download for current PlantUML version
-PLANTUML_VERSION=1.2022.0
 
 FORMAT="png"
 
 USAGE=`cat <<EOF
-PlantUML wrapper, version ${PLANTUML_VERSION}
-
-Renders a binary image as a sibling of a PlantUML source file.
+Renders a binary image from a PlantUML source file.
 
 Usage:  plantuml.sh [option] source-file
+
+Options:
+        -f  The format of the generated image.
+        -h  Print the help text.
+        -u  Update to latest PlantUML version.
+        -v  Show current PlantUML version.
+        -w  Watch file changes and re-render the diagram every time the file changes.
 
 Examples:
         plantuml.sh hello-world.puml
         plantuml.sh -f svg hello-world.puml
         plantuml.sh -w hello-world.puml
 
-Options:
-        -f  The format of the generated image.
-        -w  Watch file changes and re-render the diagram every time the file changes.
-        -h  Print the help text.
-
 Examples:
         https://github.com/experimental-software/plotters/blob/master/examples/plantuml/README.md
 EOF
 `
 
-while getopts "f: w h" flag; do
+while getopts "f: w h v u" flag; do
 case "$flag" in
     h) HELP='true';;
+    v) SHOW_VERSION='true';;
+    u) UPDATE_VERSON='true'; SHOW_VERSION='true' ;;
     w) WATCH='true';;
     f) FORMAT=$OPTARG;;
 esac
@@ -44,9 +45,9 @@ done
 
 DIAGRAM=${@:$OPTIND:1}
 
-if [[ ${HELP} == 'true' || -z "$DIAGRAM" ]]; then
+if [[ ${HELP} == 'true' ]]; then
   echo "${USAGE}" >&2
-  exit 1
+  exit 0
 fi
 
 set -e
@@ -54,11 +55,26 @@ DIAGRAM=$(perl -MCwd -e 'print Cwd::abs_path shift' ${DIAGRAM})
 DIRNAME=$(dirname ${DIAGRAM})
 BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
-DOCKER_IMAGE="karfau/plantuml:${PLANTUML_VERSION}"
+DOCKER_IMAGE="karfau/plantuml:latest"
 set +e
 
-if [[ "$(docker images -q ${DOCKER_IMAGE} 2> /dev/null)" == "" ]]; then
+if [[ ${UPDATE_VERSON} == 'true' || "$(docker images -q ${DOCKER_IMAGE} 2> /dev/null)" == "" ]]; then
   docker pull ${DOCKER_IMAGE} || exit 1
+  echo
+fi
+
+if [[ ${SHOW_VERSION} == 'true' ]]; then
+  docker run -i ${DOCKER_IMAGE} -version
+  echo
+  echo "Also see:"
+  echo "- https://hub.docker.com/r/karfau/plantuml/tags"
+  echo "- https://plantuml.com/download"
+  exit 0
+fi
+
+if [[ -z "$DIAGRAM" ]]; then
+  echo "${USAGE}" >&2
+  exit 1
 fi
 
 if [[ ${WATCH} == 'true' ]]; then
