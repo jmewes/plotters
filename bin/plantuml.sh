@@ -76,7 +76,7 @@ if [[ ${WATCH} == 'true' ]]; then
   which entr > /dev/null 2>&1
   if [[ $? -eq 0 ]]; then
     echo "(Re-)generating $DIRNAME/$RESULT"
-    ls ${DIAGRAM} | entr bash -c "date && cat ${DIAGRAM} | docker run -i ${DOCKER_IMAGE} -pipe -t${FORMAT} > ${DIRNAME}/${RESULT}"
+    ls ${DIAGRAM} | entr bash -c "date && cat ${DIAGRAM} | docker run --rm -i ${DOCKER_IMAGE} -pipe -t${FORMAT} > ${DIRNAME}/${RESULT}"
   else
     echo "ERROR: You need to have \`entr\` installed to be able to use the \`-w\` flag." >&2
     echo "See https://bit.ly/36q3nN9 for setup instructions." >&2
@@ -84,5 +84,5 @@ if [[ ${WATCH} == 'true' ]]; then
   fi
 else
   echo "Generating $DIRNAME/$RESULT"
-  cat ${DIAGRAM} | docker run -i ${DOCKER_IMAGE} -pipe -t${FORMAT} > "${DIRNAME}/${RESULT}"
+  cat ${DIAGRAM} | docker run --rm -i ${DOCKER_IMAGE} -pipe -t${FORMAT} > "${DIRNAME}/${RESULT}"
 fi

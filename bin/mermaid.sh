@@ -52,7 +52,7 @@ DIRNAME=$(dirname ${DIAGRAM})
 BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
 DOCKER_IMAGE="minlag/mermaid-cli:${MERMAID_VERSION}"
-COMPILE_CMD="docker run -u ${UID} -it -v ${DIRNAME}:/data ${DOCKER_IMAGE} -i /data/${BASENAME} --output /data/${RESULT}"
+COMPILE_CMD="docker run --rm -u ${UID} -it -v ${DIRNAME}:/data ${DOCKER_IMAGE} -i /data/${BASENAME} --output /data/${RESULT}"
 set +x
 
 if [[ "$(docker images -q ${DOCKER_IMAGE} 2> /dev/null)" == "" ]]; then

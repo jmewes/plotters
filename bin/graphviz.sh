@@ -54,7 +54,7 @@ DIRNAME=$(dirname ${DIAGRAM})
 BASENAME=$(basename -- "${DIAGRAM}")
 RESULT="${BASENAME%.*}.${FORMAT}"
 DOCKER_IMAGE="experimentalsoftware/graphviz-dot:${GRAPHVIZ_VERSION}"
-COMPILE_CMD="cat ${DIAGRAM} | docker run -i ${DOCKER_IMAGE} dot -T${FORMAT} > ${DIRNAME}/${RESULT}"
+COMPILE_CMD="cat ${DIAGRAM} | docker run --rm -i ${DOCKER_IMAGE} dot -T${FORMAT} > ${DIRNAME}/${RESULT}"
 set +e
 
 if [[ "$(docker images -q ${DOCKER_IMAGE} 2> /dev/null)" == "" ]]; then
