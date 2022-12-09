@@ -23,8 +23,7 @@ The plotters are tested on Ubuntu and macOS.
 For the setup, it is recommended to clone this repository and then add its `/bin` directory into your `PATH` variable.
 
 ```bash
-git clone git@github.com:experimental-software/plotters.git \
- || git clone https://github.com/experimental-software/plotters.git
+git clone git@github.com:experimental-software/plotters.git
 cd plotters
 PATH="$(pwd)/bin:${PATH}"
 ```
@@ -39,26 +38,24 @@ PATH="~/src/experimental-software/plotters/bin:${PATH}"
 
 Then you can use the bash scripts to generate diagrams anywhere on the terminal, using relative or absolute path declarations for the source files. It will generate the diagram as a sibling of the source file.
 
-### Graphviz
+### PlantUML
 
-> Graphviz is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks. It has important applications in networking, bioinformatics, software engineering, database and web design, machine learning, and in visual interfaces for other technical domains. [[graphviz.org]](https://graphviz.org/)
+> PlantUML is a component that allows to quickly write: Sequence diagram, usecase diagram, class diagram, object diagram, activity diagram, component diagram, deployment diagram, state diagram, timing diagram. (...) [[plantuml.com]](https://plantuml.com/)
 
 **Plot diagram**
 
-Call `graphviz.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
+Call `plantuml.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
 
 ```
-$ graphviz.sh examples/graphviz/hello-world.dot
-Generating /home/janux/src/experimental-software/plotters/examples/graphviz/hello-world.png
+$ plantuml.sh examples/plantuml/hello-world.puml
+Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hello-world.png
 ```
 
 **Target format**
 
-With the help of the `-f` parameter, you can change the target format of the plotted diagram.
-
 ```
-$ graphviz.sh -f svg examples/graphviz/hello-world.dot
-Generating /home/janux/src/experimental-software/plotters/examples/graphviz/hello-world.svg
+$ plantuml.sh -f svg examples/plantuml/hello-world.puml
+Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hello-world.svg
 ```
 
 **Help**
@@ -66,12 +63,9 @@ Generating /home/janux/src/experimental-software/plotters/examples/graphviz/hell
 To get an overview of which options are available for the script, call it with the `-h` flag.
 
 ```
-graphviz.sh -h
+plantuml.sh -h
 ```
 
-**Examples**
-
-Examples for Graphviz digrams can be found [here](./examples/graphviz).
 
 ### Mermaid
 
@@ -109,24 +103,27 @@ mermaid.sh -h
 
 Examples for Mermaid digrams can be found [here](./examples/mermaid).
 
-### PlantUML
 
-> PlantUML is a component that allows to quickly write: Sequence diagram, usecase diagram, class diagram, object diagram, activity diagram, component diagram, deployment diagram, state diagram, timing diagram. (...) [[plantuml.com]](https://plantuml.com/)
+### Graphviz
+
+> Graphviz is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks. It has important applications in networking, bioinformatics, software engineering, database and web design, machine learning, and in visual interfaces for other technical domains. [[graphviz.org]](https://graphviz.org/)
 
 **Plot diagram**
 
-Call `plantuml.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
+Call `graphviz.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
 
 ```
-$ plantuml.sh examples/plantuml/hello-world.puml
-Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hello-world.png
+$ graphviz.sh examples/graphviz/hello-world.dot
+Generating /home/janux/src/experimental-software/plotters/examples/graphviz/hello-world.png
 ```
 
 **Target format**
 
+With the help of the `-f` parameter, you can change the target format of the plotted diagram.
+
 ```
-$ plantuml.sh -f svg examples/plantuml/hello-world.puml
-Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hello-world.svg
+$ graphviz.sh -f svg examples/graphviz/hello-world.dot
+Generating /home/janux/src/experimental-software/plotters/examples/graphviz/hello-world.svg
 ```
 
 **Help**
@@ -134,5 +131,9 @@ Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hell
 To get an overview of which options are available for the script, call it with the `-h` flag.
 
 ```
-plantuml.sh -h
+graphviz.sh -h
 ```
+
+**Examples**
+
+Examples for Graphviz digrams can be found [here](./examples/graphviz).
