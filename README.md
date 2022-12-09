@@ -2,7 +2,7 @@
 
 This repository contains a collection of Docker-based Bash scripts which can plot diagram source files into binary images.
 
-The following diagramming tools are supported:
+## Supported diagramming tools
 
 - [PlantUML](#plantuml)
 - [Mermaid](#mermaid)
