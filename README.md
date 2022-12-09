@@ -4,9 +4,9 @@ This repository contains a collection of Docker-based Bash scripts which can plo
 
 The following diagramming tools are supported:
 
-- [Graphviz](#graphviz)
-- [Mermaid](#mermaid)
 - [PlantUML](#plantuml)
+- [Mermaid](#mermaid)
+- [Graphviz](#graphviz)
 
 ## Dependencies
 
