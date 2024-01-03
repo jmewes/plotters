@@ -5,6 +5,7 @@ This repository contains a collection of Docker-based Bash scripts which can plo
 ## Supported diagramming tools
 
 - [PlantUML](#plantuml)
+- [bpmn-to-image](#bpmn-to-image)
 - [Mermaid](#mermaid)
 - [Graphviz](#graphviz)
 
@@ -40,10 +41,6 @@ Then you can use the bash scripts to generate diagrams anywhere on the terminal,
 
 ### PlantUML
 
-> PlantUML is a component that allows to quickly write: Sequence diagram, usecase diagram, class diagram, object diagram, activity diagram, component diagram, deployment diagram, state diagram, timing diagram. (...) [[plantuml.com]](https://plantuml.com/)
-
-**Plot diagram**
-
 Call `plantuml.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
 
 ```
@@ -51,27 +48,25 @@ $ plantuml.sh examples/plantuml/hello-world.puml
 Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hello-world.png
 ```
 
-**Target format**
+**Also see**
+
+- https://plantuml.com
+
+### bpmn-to-image
+
+Call `bpmn.sh` with the source file as a positional parameter to plot the diagram to the PNG format.
 
 ```
-$ plantuml.sh -f svg examples/plantuml/hello-world.puml
-Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hello-world.svg
+$ bpmn.sh examples/bpmn-to-image/hello-world.bpmn
+$ open examples/bpmn-to-image/hello-world.png
 ```
 
-**Help**
+**Also see**
 
-To get an overview of which options are available for the script, call it with the `-h` flag.
-
-```
-plantuml.sh -h
-```
-
+- https://bpmn.io
+- https://github.com/bpmn-io/bpmn-to-image
 
 ### Mermaid
-
-> Mermaid lets you create diagrams and visualizations using text and code. It is a Javascript based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically. [[mermaid-js.github.io]](https://mermaid-js.github.io/mermaid/#/)
-
-**Plot diagram**
 
 Call `mermaid.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
 
@@ -81,34 +76,11 @@ Generating /home/janux/src/experimental-software/plotters/examples/mermaid/hello
 Generating single mermaid chart
 ```
 
-**Target format**
+**Also see**
 
-With the help of the `-f` parameter, you can change the target format of the plotted diagram.
-
-```
-$ mermaid.sh -f svg examples/mermaid/hello-world.mm
-Generating /home/janux/src/experimental-software/plotters/examples/mermaid/hello-world.svg
-Generating single mermaid chart
-```
-
-**Help**
-
-To get an overview of which options are available for the script, call it with the `-h` flag.
-
-```
-mermaid.sh -h
-```
-
-**Examples**
-
-Examples for Mermaid digrams can be found [here](./examples/mermaid).
-
+- https://mermaid-js.github.io/mermaid
 
 ### Graphviz
-
-> Graphviz is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks. It has important applications in networking, bioinformatics, software engineering, database and web design, machine learning, and in visual interfaces for other technical domains. [[graphviz.org]](https://graphviz.org/)
-
-**Plot diagram**
 
 Call `graphviz.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
 
@@ -117,23 +89,6 @@ $ graphviz.sh examples/graphviz/hello-world.dot
 Generating /home/janux/src/experimental-software/plotters/examples/graphviz/hello-world.png
 ```
 
-**Target format**
+**Also see**
 
-With the help of the `-f` parameter, you can change the target format of the plotted diagram.
-
-```
-$ graphviz.sh -f svg examples/graphviz/hello-world.dot
-Generating /home/janux/src/experimental-software/plotters/examples/graphviz/hello-world.svg
-```
-
-**Help**
-
-To get an overview of which options are available for the script, call it with the `-h` flag.
-
-```
-graphviz.sh -h
-```
-
-**Examples**
-
-Examples for Graphviz digrams can be found [here](./examples/graphviz).
+- https://graphviz.org
