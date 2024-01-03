@@ -1,0 +1,19 @@
+@startuml Example Class Diagram
+
+hide empty members
+
+package "Bazola" {
+  class Foo {
+    Zxc zxc
+    Zxc spqr()
+    +Zxc bletch()
+    #Zxc grunt()
+    -Zxc sheila()
+    {static} Zxc wombat()
+  }
+  Foo ..|> Bar
+
+  interface Bar
+}
+
+@enduml
