@@ -58,6 +58,7 @@ Call `bpmn.sh` with the source file as a positional parameter to plot the diagra
 
 ```
 $ bpmn.sh examples/bpmn-to-image/hello-world.bpmn
+writing hello-world.png
 $ open examples/bpmn-to-image/hello-world.png
 ```
 
@@ -72,8 +73,9 @@ Call `mermaid.sh` with the source file as a positional parameter to plot the dia
 
 ```
 $ mermaid.sh examples/mermaid/hello-world.txt
-Generating /home/janux/src/experimental-software/plotters/examples/mermaid/hello-world.png
+Generating /Users/jdoe/src/experimental-software/plotters/examples/mermaid/hello-world.png
 Generating single mermaid chart
+$ open examples/mermaid/hello-world.png
 ```
 
 **Also see**
