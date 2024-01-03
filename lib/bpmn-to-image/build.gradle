@@ -1,0 +1,13 @@
+task build(type: Exec) {
+    executable "bash"
+    args "-c", '''
+        docker build -t experimentalsoftware/bpmn-to-image .
+    '''
+}
+
+task publish(type: Exec) {
+    executable "bash"
+    args "-c", '''
+        docker push experimentalsoftware/bpmn-to-image --all-tags
+    '''
+}

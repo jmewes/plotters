@@ -8,7 +8,7 @@ cat t/hello-world.dot | docker run --rm -i experimentalsoftware/graphviz-dot dot
 
 ## Maintenance
 
-```
+```sh
 # Build a new image
 gradle build
 
