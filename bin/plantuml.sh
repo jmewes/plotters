@@ -6,7 +6,9 @@ which dirname > /dev/null 2>&1 || { echo "ERROR: \`dirname\` not installed" ; ex
 which basename > /dev/null 2>&1 || { echo "ERROR: \`basename\` not installed" ; exit 1; }
 
 FORMAT="png"
-DOCKER_IMAGE="karfau/plantuml:latest"
+
+# https://hub.docker.com/r/dstockhammer/plantuml/tags
+DOCKER_IMAGE="dstockhammer/plantuml:1.2023.13"
 
 USAGE=`cat <<EOF
 Renders a binary image from a PlantUML source file.
@@ -62,6 +64,11 @@ if [[ -z "$DIAGRAM" ]]; then
   echo "ERROR: Missing parameter for diagram source file."
   echo
   echo "${USAGE}" >&2
+  exit 1
+fi
+
+if [[ ! -f ${DIAGRAM} ]]; then
+  echo "ERROR: File does not exist: ${DIAGRAM}" 
   exit 1
 fi
 
