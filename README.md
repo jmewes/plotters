@@ -41,6 +41,14 @@ Then you can use the bash scripts to generate diagrams anywhere on the terminal,
 
 ### PlantUML
 
+This repository hosts a [plantuml.sh](bin/plantuml.sh) script which is a wrapper around the following Docker command:
+
+```sh
+cat example.puml | docker run --rm -i \
+    dstockhammer/plantuml:1.2023.13 \
+    -pipe -tpng > example.png
+```
+
 Call `plantuml.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
 
 ```
@@ -51,6 +59,7 @@ Generating /home/janux/src/experimental-software/plotters/examples/plantuml/hell
 **Also see**
 
 - https://plantuml.com
+- https://github.com/dstockhammer/docker-plantuml
 
 ### bpmn-to-image
 
