@@ -1,6 +1,6 @@
 # Plotters
 
-This repository contains a collection of Docker-based Bash scripts which can plot diagram source files into binary images.
+> Docker-based scripts that render images from diagram source files
 
 ## Supported diagramming tools
 
