@@ -44,8 +44,7 @@ Then you can use the bash scripts to generate diagrams anywhere on the terminal,
 This repository hosts a [plantuml.sh](bin/plantuml.sh) script which is a wrapper around the following Docker command:
 
 ```sh
-cat example.puml | docker run --rm -i \
-    dstockhammer/plantuml \
+cat example.puml | docker run --rm -i dstockhammer/plantuml \
     -pipe -tpng > example.png
 ```
 
