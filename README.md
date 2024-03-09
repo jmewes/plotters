@@ -45,7 +45,7 @@ This repository hosts a [plantuml.sh](bin/plantuml.sh) script which is a wrapper
 
 ```sh
 cat example.puml | docker run --rm -i \
-    dstockhammer/plantuml:1.2023.13 \
+    dstockhammer/plantuml \
     -pipe -tpng > example.png
 ```
 
