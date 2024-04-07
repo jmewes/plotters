@@ -8,7 +8,7 @@ which basename > /dev/null 2>&1 || { echo "ERROR: \`basename\` not installed" ; 
 FORMAT="png"
 
 # https://hub.docker.com/r/dstockhammer/plantuml/tags
-DOCKER_IMAGE="dstockhammer/plantuml:1.2023.13"
+DOCKER_IMAGE="dstockhammer/plantuml:1.2024.3"
 
 USAGE=`cat <<EOF
 Renders a binary image from a PlantUML source file.
