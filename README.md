@@ -90,6 +90,22 @@ $ open examples/mermaid/hello-world.png
 
 - https://mermaid-js.github.io/mermaid
 
+### Context Mapper
+
+This repository hosts a [context-mapper.sh](bin/context-map.sh) script which is wrapper around the following Docker command:
+
+```sh
+docker run --rm -v $(PWD):/data experimentalsoftware/context-mapper \
+  generate --generator context-map --input /data/context.cml --outputDir /data
+```
+
+Call `context-mapper.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
+
+**Also see**
+
+- https://contextmapper.org/docs/home/
+- https://hub.docker.com/repository/docker/experimentalsoftware/context-mapper
+
 ### Graphviz
 
 Call `graphviz.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
