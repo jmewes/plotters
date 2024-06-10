@@ -6,9 +6,9 @@ ContextMap {
 
   openEHR4j [D, CF]<-[U, PL] openEHR
 
-  ehrcommons Customer-Supplier KSCHWorkflows
+  ehrcommons [D, CF]<-[U] openEHR4j
 
-  ehrcommons Downstream-Upstream openEHR4j
+  KSCHWorkflows Customer-Supplier ehrcommons
 }
 
 BoundedContext ehrcommons
