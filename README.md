@@ -7,6 +7,7 @@
 - [PlantUML](#plantuml)
 - [bpmn-to-image](#bpmn-to-image)
 - [Mermaid](#mermaid)
+- [Context Mapper](#context-mapper)
 - [Graphviz](#graphviz)
 
 ## Dependencies
@@ -90,16 +91,16 @@ $ open examples/mermaid/hello-world.png
 
 - https://mermaid-js.github.io/mermaid
 
-### Context Mapper
+### Context Map
 
-This repository hosts a [context-mapper.sh](bin/context-map.sh) script which is wrapper around the following Docker command:
+This repository hosts a [context-map.sh](bin/context-map.sh) script which is wrapper around the following Docker command:
 
 ```sh
 docker run --rm -v $(PWD):/data experimentalsoftware/context-mapper \
   generate --generator context-map --input /data/context.cml --outputDir /data
 ```
 
-Call `context-mapper.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
+Call `context-map.sh` with the source file as a positional parameter to plot the diagram to the default format (PNG).
 
 **Also see**
 

@@ -6,9 +6,9 @@ which dirname > /dev/null 2>&1 || { echo "ERROR: \`dirname\` not installed" ; ex
 which basename > /dev/null 2>&1 || { echo "ERROR: \`basename\` not installed" ; exit 1; }
 
 USAGE=`cat <<EOF
-context-mapper-cli wrapper
+wrapper for the context-map generator of context-mapper-cli
 
-Usage:  contextmapper.sh [option] source-file
+Usage:  context-map.sh [option] source-file
 
 Examples:
         context-mapper.sh context.cml
@@ -35,9 +35,18 @@ set -e
 DIAGRAM=$(perl -MCwd -e 'print Cwd::abs_path shift' ${DIAGRAM})
 DIRNAME=$(dirname ${DIAGRAM})
 BASENAME=$(basename -- "${DIAGRAM}")
-# BASENAME_WITHOUT_EXTENSION="${BASENAME%.*}"
-# RESULT="${BASENAME%.*}.png"
+BASENAME_WITHOUT_EXTENSION="${BASENAME%.*}"
+RESULT="${BASENAME%.*}.png"
 set +e
 
-docker run --rm -v ${DIRNAME}:/data -v ${DIRNAME}:/out experimentalsoftware/context-mapper \
+if [[ ! -f $DIAGRAM ]]; then
+  echo "ERROR: $DIAGRAM is not a file"
+  exit 1
+fi
+
+TEMP_DIR=$(mktemp -d)
+
+docker run --rm -v ${DIRNAME}:/data -v ${TEMP_DIR}:/out experimentalsoftware/context-mapper \
   generate --generator context-map --input /data/${BASENAME} --outputDir /out 
+
+cp "${TEMP_DIR}/${BASENAME_WITHOUT_EXTENSION}_ContextMap.png" "${DIRNAME}/${RESULT}"
