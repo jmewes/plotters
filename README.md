@@ -7,7 +7,7 @@
 - [PlantUML](#plantuml)
 - [bpmn-to-image](#bpmn-to-image)
 - [Mermaid](#mermaid)
-- [Context Mapper](#context-mapper)
+- [Context Map](#context-map)
 - [Graphviz](#graphviz)
 
 ## Dependencies
